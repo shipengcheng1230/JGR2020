@@ -11,7 +11,6 @@ function solve_from_para_01(pf, output; offsetinit=true, stride=50, yearto=300.0
     pff = joinpath(@__DIR__, pf)
     pe = @getprop pff
 
-    # gffile = "/data/weilab/spc/Toussaint/dom/gf01.h5"
     gffile = joinpath(@__DIR__, "gf.h5")
     @info "Loading Green's function " * basename(gffile) * " ..."
     gf = h5read(gffile, "ee")
