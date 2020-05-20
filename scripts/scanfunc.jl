@@ -59,9 +59,9 @@ slip_magnitude(s::T, ds::T, μ::T=3e10) where T = (log10(μ * s * ds) - 9.1) / 1
 slip_magnitude(s::AbstractVector, ds::T, μ::T=3e10) where T = map(x -> slip_magnitude(x, ds, μ), s)
 
 ##
-function scan_output_01(filename; _stride=1, domith="01")
+function scan_output_01(filename; _stride=1)
     fname = joinpath(@__DIR__, filename)
-    include(joinpath(@__DIR__, "dom" * domith * ".jl"))
+    include(joinpath(@__DIR__, "s01-domain.jl"))
     @info "Reading: " * fname
 
     f = h5open(fname, "r")
@@ -144,9 +144,9 @@ function coulomb_stress(gf, δ)
     τ = τa[1:nx,:]
 end
 
-function slip_ratio(fname, cutoff=:all; domith="01")
+function slip_ratio(fname, cutoff=:all)
     f = joinpath(@__DIR__, fname)
-    include(joinpath(@__DIR__, "dom" * domith * ".jl"))
+    include(joinpath(@__DIR__, "s01-domain.jl"))
     @info "Reading $(f)"
 
     t = h5read(f, "t")

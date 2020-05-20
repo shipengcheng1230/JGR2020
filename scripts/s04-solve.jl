@@ -6,15 +6,13 @@ if BLAS.vendor() == :openblas64
     @info ccall((:openblas_get_num_threads64_, Base.libblas_name), Cint, ())
 end
 
-const domith = "01"
-
 function solve_from_para_01(pf, output; offsetinit=true, stride=50, yearto=300.0)
     @info "Loading $(pf) ..."
     pff = joinpath(@__DIR__, pf)
     pe = @getprop pff
 
     # gffile = "/data/weilab/spc/Toussaint/dom/gf01.h5"
-    gffile = joinpath(@__DIR__, "gf" * domith * ".h5")
+    gffile = joinpath(@__DIR__, "gf.h5")
     @info "Loading Green's function " * basename(gffile) * " ..."
     gf = h5read(gffile, "ee")
 
@@ -85,5 +83,5 @@ mkey = keys(model2output_orgin) |> collect |> sort
 k = mkey[parse(Int64, ARGS[1])] # output name
 v = model2output_orgin[k] # prop name
 solve_from_para_01(v[1], k, yearto=600.0, stride=100, offsetinit=true)
-scan_output_01(k; domith=domith)
-slip_ratio(k, -6e3; domith=domith)
+scan_output_01(k)
+slip_ratio(k, -6e3)

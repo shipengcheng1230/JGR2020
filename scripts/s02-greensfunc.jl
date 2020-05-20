@@ -1,8 +1,8 @@
 using Quaycle
 using HDF5
 
-gffile = joinpath(@__DIR__, "gf" * nth * ".h5")
-include(joinpath(@__DIR__, "dom" * nth * ".jl"))
+gffile = joinpath(@__DIR__, "gf.h5")
+include(joinpath(@__DIR__, "s01-domain.jl"))
 @info "Fault elements: $(mf.nx * mf.nξ)"
 
 ft = STRIKING()

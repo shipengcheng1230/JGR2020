@@ -3,7 +3,7 @@ using HDF5
 using GmshTools
 using Gmsh_SDK_jll
 
-include(joinpath(@__DIR__, "dom01.jl"))
+include(joinpath(@__DIR__, "s01-domain.jl"))
 
 function set_mid_03(fname, x, type, val; avw=0.015, abvw=0.0045, Dc=7e-3, single=false, vwdepth=5e3, vwbarrier=false)
     cs = 3044.14
